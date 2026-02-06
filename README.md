@@ -49,7 +49,7 @@ docker run -d \
 # 5. 按实际情况配置 config.yaml, 配置完成后重启容器
 ```
 
-### 方法二：使用 Docker 命令
+### 方法二：使用 Docker 命令构建
 
 ```bash
 # 1. 克隆或下载项目
