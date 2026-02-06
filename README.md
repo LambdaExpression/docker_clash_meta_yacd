@@ -17,14 +17,14 @@
 
 ```bash
 # 1. 创建目录
-mkidr -p clash-meta-yacd && cd clash-meta-yacd
+mkdir -p clash-meta-yacd && cd clash-meta-yacd
 
 # 2. 下载必要文件
-mkidr -p ./clash-config/ruleset && \
+mkdir -p ./clash-config/ruleset && \
 wget https://raw.githubusercontent.com/LambdaExpression/docker_clash_meta_yacd/refs/heads/main/clash-config/config.yaml -O ./clash-config/config.yaml && \
 wget https://raw.githubusercontent.com/LambdaExpression/docker_clash_meta_yacd/refs/heads/main/clash-config/Country.mmdb -O ./clash-config/Country.mmdb  && \
 wget https://raw.githubusercontent.com/LambdaExpression/docker_clash_meta_yacd/refs/heads/main/clash-config/ruleset/proxy.yaml -O ./clash-config/ruleset/proxy.yaml && \
-wget https://raw.githubusercontent.com/LambdaExpression/docker_clash_meta_yacd/refs/heads/main/clash-config/ruleset/reject.yaml -O ./clash-config/ruleset/reject.yaml && \
+wget https://raw.githubusercontent.com/LambdaExpression/docker_clash_meta_yacd/refs/heads/main/clash-config/ruleset/reject.yaml -O ./clash-config/ruleset/reject.yaml
 
 # 3. 下载容器镜像
 docker pull lambdaexpression/clash-meta-yacd:latest
