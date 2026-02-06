@@ -1,0 +1,64 @@
+# config.yaml.example
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 0.0.0.0:9090
+
+# DNS 设置（可选）
+dns:
+  enable: true
+  listen: :53
+  enhanced-mode: redir-host
+  nameserver:
+    - 114.114.114.114
+    - 8.8.8.8
+
+# 规则提供者（示例）
+rule-providers:
+
+  reject:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: ./ruleset/reject.yaml
+    interval: 86400
+
+  proxy:
+    type: http
+    behavior: domain
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/proxy.txt"
+    path: ./ruleset/proxy.yaml
+    interval: 86400
+
+# 代理节点（需要用户自己填写）
+proxies:
+  - name: "节点1"
+    type: ss
+    server: server
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "password"
+
+# 代理组
+proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+      - DIRECT
+      - 节点1
+
+  - name: AUTOMATIC
+    type: url-test
+    proxies:
+      - 节点1
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+
+# 规则
+rules:
+  - RULE-SET,reject,REJECT
+  - GEOIP,CN,DIRECT
+  - MATCH,PROXY
